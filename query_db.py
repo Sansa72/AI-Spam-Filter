@@ -88,7 +88,7 @@ class AnalysisReport:
             models_agree = (hf_label == openai_norm)
         
         verdict_emoji = "✅" if models_agree else "⚠️"
-        verdict_text = "AGREEMENT" if models_agree else "DISAGREEMENT"
+        verdict_text = " AGREEMENT" if models_agree else " DISAGREEMENT"
         
         # Risk level color coding
         risk_emoji = {
@@ -98,27 +98,27 @@ class AnalysisReport:
         }.get(risk_level, "⚪")
         
         # Print entry
-        print(f"\n📧 Entry #{id_} | {self.format_timestamp(ts)}")
+        print(f"\n  Entry #{id_} | {self.format_timestamp(ts)}")
         print(self.print_divider("─"))
         
         # Sender information
-        print(f"👤 From: {sender_name or '(no name)'} <{sender_email or 'unknown'}>")
+        print(f"  From: {sender_name or '(no name)'} <{sender_email or 'unknown'}>")
         print(f"   Domain: {sender_domain or 'unknown'}")
         if reply_to:
             print(f"   Reply-To: {reply_to}")
         
         # Message content
-        print(f"\n💬 Message:")
+        print(f"\n  Message:")
         print(self.wrap_text(msg, indent="   "))
         
         # Ground truth
-        print(f"\n🎯 Ground Truth:")
+        print(f"\n  Ground Truth:")
         print(f"   Intended: {true_intended or 'unknown'}")
         if true_human:
             print(f"   Human verified: {true_human}")
         
         # Detection features
-        print(f"\n🔍 Detection Features:")
+        print(f"\n  Detection Features:")
         print(f"   Scam signals: {', '.join(scam_signals) if scam_signals else 'none detected'}")
         print(f"   Security flags: {', '.join(flags) if flags else 'none detected'}")
         
@@ -172,7 +172,7 @@ class AnalysisReport:
     
     def display_summary_statistics(self):
         """Display summary statistics and insights."""
-        self.print_header("Summary Statistics", "📊")
+        self.print_header("Summary Statistics")
         
         # Total messages
         self.cursor.execute("SELECT COUNT(*) FROM messages")
@@ -191,7 +191,7 @@ class AnalysisReport:
         """)
         phish_cnt, benign_cnt = self.cursor.fetchone()
         
-        print(f"\n📈 Dataset Overview:")
+        print(f"\n  Dataset Overview:")
         print(f"   Total messages analyzed: {total}")
         print(f"   └─ Intended phishing: {phish_cnt} ({phish_cnt/total*100:.1f}%)")
         print(f"   └─ Intended benign:   {benign_cnt} ({benign_cnt/total*100:.1f}%)")
@@ -216,7 +216,7 @@ class AnalysisReport:
         """)
         avg_conf_disagree = self.cursor.fetchone()[0]
         
-        print(f"\n🔄 Model Agreement Analysis:")
+        print(f"\n  Model Agreement Analysis:")
         print(f"   Total disagreements: {disagreements} ({disagreements/total*100:.1f}%)")
         if avg_conf_disagree is not None:
             print(f"   Avg HF confidence during disagreement: {avg_conf_disagree:.1%}")
@@ -263,7 +263,7 @@ class AnalysisReport:
         
         if result and result[0] is not None and result[1] is not None:
             hf_acc, openai_acc = result
-            print(f"\n📊 Accuracy vs Intended Labels:")
+            print(f"\n  Accuracy vs Intended Labels:")
             print(f"   Hugging Face: {hf_acc*100:.1f}%")
             print(f"   OpenAI:       {openai_acc*100:.1f}%")
             
@@ -281,7 +281,7 @@ class AnalysisReport:
     def generate_full_report(self, recent_limit: int = 10):
         """Generate a complete analysis report."""
         print("\n" + "=" * DISPLAY_WIDTH)
-        print("🔒 SPAM FILTER ANALYSIS REPORT".center(DISPLAY_WIDTH))
+        print("  SPAM FILTER ANALYSIS REPORT".center(DISPLAY_WIDTH))
         print("=" * DISPLAY_WIDTH)
         
         self.display_recent_messages(recent_limit)
@@ -289,7 +289,7 @@ class AnalysisReport:
         self.display_performance_metrics()
         
         print("\n" + "=" * DISPLAY_WIDTH)
-        print("✅ Report generated successfully".center(DISPLAY_WIDTH))
+        print("  Report generated successfully".center(DISPLAY_WIDTH))
         print("=" * DISPLAY_WIDTH + "\n")
 
 
