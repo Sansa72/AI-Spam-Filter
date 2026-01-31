@@ -2,7 +2,7 @@
 
 An intelligent spam detection system that combines machine learning models with security feature extraction and explainable risk scoring.
 
-## 🌟 Features
+##   Features
 
 - **Dual-Model Classification**
   - Hugging Face BERT for fast, local classification (content-based)
@@ -26,7 +26,7 @@ An intelligent spam detection system that combines machine learning models with 
 
 ---
 
-## 📋 System Architecture
+##   System Architecture
 
 ### 1. Database Setup (`setup_db.py`)
 
@@ -90,7 +90,7 @@ python query_db.py
 
 ---
 
-## 🚀 Quick Start
+##   Quick Start
 
 ### Prerequisites
 
@@ -152,23 +152,23 @@ python query_db.py
 🔒 SPAM FILTER ANALYSIS
 ================================================================================
 
-📧 Generating email samples...
+  Generating email samples...
 ✓ Generated 24 samples (21 phishing, 3 benign)
 
-🔄 Processing emails...
+  Processing emails...
 
 [1/24]
 ────────────────────────────────────────────────────────────────────────────────
-📧 From: Marco Rossi <colleague@company.com>
+  From: Marco Rossi <colleague@company.com>
 
-🎯 Ground Truth: BENIGN
+  Ground Truth: BENIGN
 
 🤖 Classifications:
    HF:     HAM (confidence: 99.8%)
    OpenAI: HAM ⊘ (skipped)
    ✅ Agreement: YES
 
-🔍 Features:
+  Features:
    Scam signals: none
    Security flags: none
 
@@ -188,19 +188,19 @@ python query_db.py
 Showing last 10 entries
 
 
-📧 Entry #24 | 2025-01-28 14:32:15
+  Entry #24 | 2025-01-28 14:32:15
 ────────────────────────────────────────────────────────────────────────────────
-👤 From: Microsoft Security <security@microsoft-auth-alerts.com>
+  From: Microsoft Security <security@microsoft-auth-alerts.com>
    Domain: microsoft-auth-alerts.com
 
-💬 Message:
+  Message:
    Urgent: Act now! Your account is locked. Reset your password here.
    hxxps://microsoft-auth[.]example[.]com/session
 
-🎯 Ground Truth:
+  Ground Truth:
    Intended: phish
 
-🔍 Detection Features:
+  Detection Features:
    Scam signals: authority, urgency, action, plausibility
    Security flags: display_name_brand_mismatch, domain_has_digits, obfuscated_url
 
@@ -215,15 +215,15 @@ Showing last 10 entries
 ✅ Verdict: AGREEMENT
 ════════════════════════════════════════════════════════════════════════════════
 
-📊 Summary Statistics
+  Summary Statistics
 ================================================================================
 
-📈 Dataset Overview:
+  Dataset Overview:
    Total messages analyzed: 24
    └─ Intended phishing: 21 (87.5%)
    └─ Intended benign:   3 (12.5%)
 
-🔄 Model Agreement Analysis:
+  Model Agreement Analysis:
    Total disagreements: 2 (8.3%)
    Avg HF confidence during disagreement: 96.2%
 
@@ -236,10 +236,10 @@ Showing last 10 entries
    🟡 MEDIUM: 8 (33.3%)
    🔴 HIGH: 12 (50.0%)
 
-🎯 Performance Metrics
+  Performance Metrics
 ================================================================================
 
-📊 Accuracy vs Intended Labels:
+  Accuracy vs Intended Labels:
    Hugging Face: 91.7%
    OpenAI:       95.8%
 
@@ -252,7 +252,7 @@ Showing last 10 entries
 
 ---
 
-## 🎯 Configuration
+##   Configuration
 
 ### Confidence Thresholds (`spam_filter.py`)
 
@@ -352,7 +352,7 @@ pip install --upgrade transformers torch
 
 ---
 
-## 📝 Future Enhancements
+##   Future Enhancements
 
 - [ ] Add more sophisticated URL analysis (reputation checks, sandbox)
 - [ ] Integrate SPF/DKIM/DMARC validation
@@ -363,7 +363,7 @@ pip install --upgrade transformers torch
 
 ---
 
-## 🙏 Acknowledgments
+##   Acknowledgments
 
 - Stajano & Wilson for scam principle research
 - Hugging Face for the BERT spam classifier
