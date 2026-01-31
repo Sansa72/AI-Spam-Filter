@@ -121,7 +121,7 @@ def initialize_models():
     print("✓ Hugging Face BERT loaded")
     
     # OpenAI client
-    client = OpenAI(api_key="Your OPEN_AI KEY")  # Replace with your actual API key
+    client = OpenAI(api_key="")  # Replace with your actual API key
     print("✓ OpenAI client initialized")
     
     return classifier, label_map, client
@@ -727,19 +727,19 @@ def print_classification_summary(
     agreement_emoji = "✅" if models_agree else "⚠️"
     
     print("\n" + "─" * 80)
-    print(f"📧 From: {email.sender_display_name} <{email.sender_email}>")
+    print(f"  From: {email.sender_display_name} <{email.sender_email}>")
     if email.reply_to:
         print(f"   Reply-To: {email.reply_to}")
     
-    print(f"\n🎯 Ground Truth: {email.true_label_intended.upper()}")
+    print(f"\n  Ground Truth: {email.true_label_intended.upper()}")
     
-    print(f"\n🤖 Classifications:")
+    print(f"\n  Classifications:")
     print(f"   HF:     {classification.hf_label.upper()} (confidence: {classification.hf_confidence:.1%})")
     openai_status = "✓" if classification.used_openai else "⊘ (skipped)"
     print(f"   OpenAI: {classification.openai_norm.upper()} {openai_status}")
     print(f"   {agreement_emoji} Agreement: {'YES' if models_agree else 'NO'}")
     
-    print(f"\n🔍 Features:")
+    print(f"\n Features:")
     print(f"   Scam signals: {', '.join(features.scam_signals) if features.scam_signals else 'none'}")
     all_flags = features.header_flags + features.vuln_flags
     print(f"   Security flags: {', '.join(all_flags) if all_flags else 'none'}")
@@ -821,16 +821,16 @@ def process_email(email: EmailItem):
 def main():
     """Main execution flow."""
     print("\n" + "=" * 80)
-    print("🔒 SPAM FILTER ANALYSIS".center(80))
+    print("  SPAM FILTER ANALYSIS".center(80))
     print("=" * 80)
     
     # Generate synthetic email samples
-    print("\n📧 Generating email samples...")
+    print("\n  Generating email samples...")
     emails = generate_email_samples(seed=RANDOM_SEED, variants_per_seed=VARIANTS_PER_SEED)
     print(f"✓ Generated {len(emails)} samples ({sum(1 for e in emails if e.true_label_intended == 'phish')} phishing, {sum(1 for e in emails if e.true_label_intended == 'benign')} benign)")
     
     # Process each email
-    print("\n🔄 Processing emails...")
+    print("\n  Processing emails...")
     for i, email in enumerate(emails, 1):
         print(f"\n[{i}/{len(emails)}]", end="")
         process_email(email)
