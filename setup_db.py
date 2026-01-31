@@ -108,7 +108,7 @@ class DatabaseManager:
     def initialize(self):
         """Initialize the database with base table and migrations."""
         print("🔧 Initializing spam filter database...")
-        print(f"📁 Database: {self.db_path}\n")
+        print(f"Database: {self.db_path}\n")
         
         # Create base table
         self.create_base_table()
@@ -118,7 +118,7 @@ class DatabaseManager:
         added_columns = self.migrate_schema()
         
         if added_columns:
-            print(f"\n📊 Added {len(added_columns)} new columns:")
+            print(f"\nAdded {len(added_columns)} new columns:")
             for col in added_columns:
                 print(col)
         else:
@@ -126,7 +126,7 @@ class DatabaseManager:
         
         # Commit changes
         self.conn.commit()
-        print("\n✅ Database initialization complete!")
+        print("\nDatabase initialization complete!")
 
 
 def main():
@@ -135,7 +135,7 @@ def main():
         with DatabaseManager() as db:
             db.initialize()
     except Exception as e:
-        print(f"\n❌ Error initializing database: {e}")
+        print(f"\nError initializing database: {e}")
         raise
 
 
